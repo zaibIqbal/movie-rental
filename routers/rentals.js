@@ -1,11 +1,8 @@
 const { Rental, validate } = require("../models/rental");
 const { Movie } = require("../models/movie");
 const { Customer } = require("../models/customer");
-// const Fawn = require("fawn");
 const express = require("express");
 const router = express.Router();
-
-Fawn.init("mongodb://127.0.0.1:27017/vidly");
 
 router.get("/", async (req, res) => {
   const rentals = await Rental.find().sort("-dateOut");
@@ -38,13 +35,9 @@ router.post("/", async (req, res) => {
     },
   });
   try {
-    rental.save();
+    await rental.save();
     movie.numberInStock--;
-    movie.save();
-    // new Fawn.Task()
-    //   .save("rentals", rental)
-    //   .update("movies", { _id: movie._id }, { $inc: { numberInStock: -1 } })
-    //   .run();
+    await movie.save();
     res.send(rental);
   } catch (ex) {
     res.status(500).send("Internal server error");

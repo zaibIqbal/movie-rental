@@ -34,7 +34,7 @@ router.put("/:id", async (req, res) => {
     {
       title: req.body.title,
       numberInStock: req.body.numberInStock,
-      totalRentalRate: req.body.totalRentalRate,
+      dailyRentalRate: req.body.dailyRentalRate,
     },
     { new: true }
   );
