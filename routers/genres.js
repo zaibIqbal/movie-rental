@@ -2,11 +2,9 @@ const express = require("express");
 const auth = require("../middleware/auth");
 const { Genre, validate } = require("../models/genre");
 const admin = require("../middleware/admin");
-const { endsWith } = require("lodash");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  throw new Error("Could get the genres");
   const genres = await Genre.find().sort("name");
   res.send(genres);
 });

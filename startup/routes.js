@@ -7,7 +7,6 @@ const users = require("../routers/users");
 const auth = require("../routers/auth");
 const home = require("../routers/home");
 const error = require("../middleware/error");
-const logger = require("../middleware/logger");
 
 module.exports = function (app) {
   app.use(express.json());
